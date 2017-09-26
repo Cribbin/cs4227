@@ -1,0 +1,15 @@
+To use as dependency
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.github.Cribbin</groupId>
+            <artifactId>cs4227</artifactId>
+            <version>[Latest Release]</version>
+        </dependency>
+    </dependencies>
