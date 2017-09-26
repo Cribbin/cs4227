@@ -3,7 +3,7 @@ public class Temp {
         return "Hello" + name;
     }
 
-    pubic String goodBye(String name) {
+    public String goodBye(String name) {
        return "Goodbye" + name; 
     }
 }
