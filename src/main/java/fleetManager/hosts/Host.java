@@ -2,10 +2,13 @@ package fleetManager.hosts;
 
 public class Host {
     private HostState hostState;
-    private HostFactory hostFactory;
+    private HostStateFactory hostStateFactory;
+    private String ipv4;
+    private String DNS;
+    private String port;
 
     public Host(String state){
-        hostFactory=new HostFactory();
+        hostStateFactory =new HostStateFactory();
+        hostState= hostStateFactory.hostState(state);
     }
-
 }

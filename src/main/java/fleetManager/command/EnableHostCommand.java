@@ -1,4 +1,19 @@
 package fleetManager.command;
 
-public class EnableHostCommand {
+import fleetManager.hosts.Host;
+import fleetManager.hosts.HostManager;
+
+public class EnableHostCommand implements Command {
+    private Host host;
+    private HostManager hostManager;
+
+    EnableHostCommand(Host host){
+        hostManager=new HostManager();
+        this.host=host;
+    }
+
+    public void execute() {
+        hostManager.enableHost(host);
+    }
+
 }
