@@ -6,7 +6,7 @@ import fleetManager.hosts.HostManager;
 public class AddHostCommand implements Command{
     private Host host;
     private HostManager hostManager;
-    AddHostCommand(Host host){
+    public AddHostCommand(Host host){
         hostManager=new HostManager();
         this.host=host;
     }

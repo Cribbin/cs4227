@@ -7,7 +7,7 @@ public class EnableHostCommand implements Command {
     private Host host;
     private HostManager hostManager;
 
-    EnableHostCommand(Host host){
+    public EnableHostCommand(Host host){
         hostManager=new HostManager();
         this.host=host;
     }

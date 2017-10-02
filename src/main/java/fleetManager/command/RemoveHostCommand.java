@@ -7,7 +7,7 @@ public class RemoveHostCommand implements Command {
     private Host host;
     private HostManager hostManager;
 
-    RemoveHostCommand(Host host){
+    public RemoveHostCommand(Host host){
         hostManager=new HostManager();
         this.host=host;
     }

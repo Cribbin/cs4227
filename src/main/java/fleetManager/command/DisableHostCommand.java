@@ -7,7 +7,7 @@ public class DisableHostCommand implements Command {
     private Host host;
     private HostManager hostManager;
 
-    DisableHostCommand(Host host){
+    public DisableHostCommand(Host host){
         hostManager=new HostManager();
         this.host=host;
     }
