@@ -1,12 +1,13 @@
 package fleetManager.command;
 
+import fleetManager.FleetManager;
 import fleetManager.FleetManagerImplementation;
 import fleetManager.hosts.Host;
 
 import java.util.List;
 
 public class GetHostsCommand implements Command {
-    private FleetManagerImplementation fleetManagerImplementation;
+    private FleetManager fleetManagerImplementation;
     private List<Host> hosts;
 
     public GetHostsCommand(){
