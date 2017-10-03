@@ -1,14 +1,18 @@
 package fleetManager;
 
 import fleetManager.hosts.Host;
+import fleetManager.storage.DAOFactory;
+import fleetManager.storage.HostDAO;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FleetManagerImplementation implements FleetManager {
 //singleton
-    public FleetManagerImplementation(){
+    private HostDAO hostDataAccess;
 
+    public FleetManagerImplementation(){
+        hostDataAccess= new DAOFactory().getDAO();
     }
 
     public void addHost(Host host){
@@ -28,7 +32,6 @@ public class FleetManagerImplementation implements FleetManager {
     }
 
     public List<Host> getHosts(){
-        List<Host> hosts = new ArrayList<Host>();
-        return hosts;
+        return hostDataAccess.getHosts();
     }
 }
