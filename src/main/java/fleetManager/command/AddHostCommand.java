@@ -1,18 +1,18 @@
 package fleetManager.command;
 
 import fleetManager.hosts.Host;
-import fleetManager.hosts.HostManager;
+import fleetManager.FleetManagerImplementation;
 
 public class AddHostCommand implements Command{
     private Host host;
-    private HostManager hostManager;
+    private FleetManagerImplementation fleetManagerImplementation;
     public AddHostCommand(Host host){
-        hostManager=new HostManager();
+        fleetManagerImplementation =new FleetManagerImplementation();
         this.host=host;
     }
 
     public void execute(){
-        hostManager.addHost(host);
+        fleetManagerImplementation.addHost(host);
     }
 
 }

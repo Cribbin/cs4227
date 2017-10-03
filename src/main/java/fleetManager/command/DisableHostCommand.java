@@ -1,18 +1,18 @@
 package fleetManager.command;
 
 import fleetManager.hosts.Host;
-import fleetManager.hosts.HostManager;
+import fleetManager.FleetManagerImplementation;
 
 public class DisableHostCommand implements Command {
     private Host host;
-    private HostManager hostManager;
+    private FleetManagerImplementation fleetManagerImplementation;
 
     public DisableHostCommand(Host host){
-        hostManager=new HostManager();
+        fleetManagerImplementation =new FleetManagerImplementation();
         this.host=host;
     }
 
     public void execute(){
-        hostManager.disableHost(host);
+        fleetManagerImplementation.disableHost(host);
     }
 }
