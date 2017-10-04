@@ -45,6 +45,7 @@ public class Host {
 
     public void setState(String state) {
         this.state = state;
+        hostState= hostStateFactory.hostState(state);
     }
 
     public String getSubnet(){
