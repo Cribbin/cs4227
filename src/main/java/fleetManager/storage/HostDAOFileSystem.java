@@ -89,6 +89,7 @@ public class HostDAOFileSystem implements HostDAO{
     }
 
     public List<Host> getHosts() {
+        readFile();
         List<Host> hosts=new ArrayList<Host>();
         Host tempHost;
         boolean isPublic=false;

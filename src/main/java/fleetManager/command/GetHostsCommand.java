@@ -17,4 +17,8 @@ public class GetHostsCommand implements Command {
     public void execute() {
         hosts=fleetManagerImplementation.getHosts();
     }
+
+    public List<Host> getHosts(){
+        return hosts;
+    }
 }

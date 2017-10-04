@@ -16,19 +16,19 @@ public class FleetManagerImplementation implements FleetManager {
     }
 
     public void addHost(Host host){
-
+        hostDataAccess.addHost(host);
     }
 
     public void removeHost(Host host){
-
+        hostDataAccess.removeHost(host);
     }
 
     public void enableHost(Host host){
-
+        hostDataAccess.enableHost(host);
     }
 
     public void disableHost(Host host){
-
+        hostDataAccess.disableHost(host);
     }
 
     public List<Host> getHosts(){
