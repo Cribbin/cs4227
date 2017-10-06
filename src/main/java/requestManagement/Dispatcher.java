@@ -26,13 +26,18 @@ public class Dispatcher {
         services.add(service);
     }
 
+    /** Deregister service to no longer receive dispatched events. */
+    public void deregister(Service service) {
+        services.remove(service);
+    }
+
     /** This event is called as soon as the request is received by the framework. */
-    public void dispatchIncomingRequest(HttpRequest request, Context context) {
-        services.forEach( s -> s.processIncomingRequest(request, context));
+    public void dispatchIncomingRequest(Context context) {
+        services.forEach( s -> s.processIncomingRequest(context));
     }
 
     /** This event is called prior to the HttpResponse being sent. */
-    public void dispatchOutgoingResponse(HttpResponse response, Context context) {
-        services.forEach(s -> s.processOutgoingResponse(response, context));
+    public void dispatchOutgoingResponse(Context context) {
+        services.forEach(s -> s.processOutgoingResponse(context));
     }
 }

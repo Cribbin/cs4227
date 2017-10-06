@@ -9,11 +9,7 @@ import org.apache.http.HttpResponse;
  */
 public interface Service {
 
-    default void processIncomingRequest(HttpRequest request, Context context){
+    default void processIncomingRequest(Context context) { }
 
-    }
-
-    default void processOutgoingResponse(HttpResponse response, Context context) {
-
-    }
+    default void processOutgoingResponse(Context context) { }
 }
