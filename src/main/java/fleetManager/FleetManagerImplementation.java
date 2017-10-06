@@ -8,10 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FleetManagerImplementation implements FleetManager {
-//singleton
+
+    private static FleetManager fleetManagerInstance= null;
     private HostDAO hostDataAccess;
 
-    public FleetManagerImplementation(){
+    private FleetManagerImplementation(){
         hostDataAccess= new DAOFactory().getDAO();
     }
 
@@ -33,5 +34,12 @@ public class FleetManagerImplementation implements FleetManager {
 
     public List<Host> getHosts(){
         return hostDataAccess.getHosts();
+    }
+
+    public static FleetManager getInstance(){
+        if(fleetManagerInstance == null){
+            fleetManagerInstance=new FleetManagerImplementation();
+        }
+        return fleetManagerInstance;
     }
 }

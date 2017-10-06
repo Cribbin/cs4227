@@ -1,17 +1,12 @@
 package fleetManager;
 
-import fleetManager.command.*;
 import fleetManager.hosts.Host;
 
 import java.util.List;
 
 public class HeathCheckImplementation implements HealthCheck {
 
-    private Command addHostCommand;
-    private Command removeHostCommand;
-    private Command enableHostCommand;
-    private Command disableHostCommand;
-    private GetHostsCommand getHostsCommand;
+    private FleetManager fleetManager;
     private Host host;
     private List<Host> allHosts;
 
@@ -20,17 +15,11 @@ public class HeathCheckImplementation implements HealthCheck {
     }
 
     public void runHealthCheck(){
-//        addHostCommand=new AddHostCommand(host);
-//        removeHostCommand=new RemoveHostCommand(host);
-//       disableHostCommand=new DisableHostCommand(host);
-//        enableHostCommand=new EnableHostCommand(host);
-        getHostsCommand= new GetHostsCommand();
-
-//        addHostCommand.execute();
-//        removeHostCommand.execute();
-//        disableHostCommand.execute();
-//        enableHostCommand.execute();
-        getHostsCommand.execute();
-        allHosts=getHostsCommand.getHosts();
+        fleetManager=FleetManagerImplementation.getInstance();
+        fleetManager.addHost(host);
+        fleetManager.removeHost(host);
+        fleetManager.disableHost(host);
+        fleetManager.enableHost(host);
+        allHosts=fleetManager.getHosts();
     }
 }
