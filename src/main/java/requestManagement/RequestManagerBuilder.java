@@ -5,7 +5,6 @@ import requestManagement.loadBalancing.LoadBalancer;
 
 public class RequestManagerBuilder {
 
-    private Context context = null;
     private Dispatcher dispatcher = null;
 
     private LoadBalancer loadBalancer = null;
@@ -15,11 +14,6 @@ public class RequestManagerBuilder {
 
     }
 
-    public RequestManagerBuilder withContext(Context context) {
-        this.setContext(context);
-
-        return this;
-    }
 
     public RequestManagerBuilder withDispatcher(Dispatcher dispatcher) {
         this.setDispatcher(dispatcher);
@@ -43,10 +37,6 @@ public class RequestManagerBuilder {
         return new RequestManagerImpl(this);
     }
 
-    private void setContext(Context context) {
-        this.context = context;
-    }
-
     private void setDispatcher(Dispatcher dispatcher) {
         this.dispatcher = dispatcher;
     }
@@ -57,10 +47,6 @@ public class RequestManagerBuilder {
 
     private void setFleetManager(FleetManager fleetManager) {
         this.fleetManager = fleetManager;
-    }
-
-    Context getContext() {
-        return this.context;
     }
 
     Dispatcher getDispatcher() {

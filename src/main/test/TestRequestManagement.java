@@ -19,53 +19,49 @@ import static org.mockito.Mockito.verify;
 public class TestRequestManagement {
 
     private Collection<Service> services = null;
-    private Service exampleService = null;
+    private Service service = null;
+    private Dispatcher dispatcher = null;
 
     @BeforeEach
     void setUp() {
+
+        /* Create new service collection with single mock service. */
         services = new ArrayList<>();
+        service = mock(Service.class);
+        services.add(service);
 
-        exampleService = new Service() {
-
-            @Override
-            public void processIncomingRequest(HttpRequest request, Context context) {
-
-            }
-
-            @Override
-            public void processOutgoingResponse(HttpResponse response, Context context) {
-
-            }
-
-        };
-
-        services.add(exampleService);
+        dispatcher = new Dispatcher(services);
     }
 
     @Test
     public void testDispatcher() {
 
-        /* Create new service collection with single mock service. */
-        Collection<Service> services = new ArrayList<>();
-        Service service = mock(Service.class);
-        services.add(service);
-
         /* Test that the dispatcher is correctly dispatching both events */
-        Dispatcher dispatcher = new Dispatcher(services);
 
-        dispatcher.dispatchIncomingRequest(null, null);
-
-        dispatcher.dispatchOutgoingResponse(null, null);
+        dispatcher.dispatchIncomingRequest(null);
+        dispatcher.dispatchOutgoingResponse(null);
 
         /* Check that each event was dispatched to the subscribed service exactly once */
-        verify(service, times(1)).processIncomingRequest(null, null);
-        verify(service, times(1)).processOutgoingResponse(null, null);
+        verify(service, times(1)).processIncomingRequest(null);
+        verify(service, times(1)).processOutgoingResponse(null);
+    }
+
+    @Test
+    public void testDispatcherDeregister() {
+
+        /* Remove service from dispatcher notification collection and ensure it does not receive the event. */
+
+        dispatcher.deregister(service);
+        dispatcher.dispatchIncomingRequest(null);
+        dispatcher.dispatchOutgoingResponse(null);
+
+        verify(service, times(0)).processIncomingRequest(null);
+        verify(service, times(0)).processOutgoingResponse(null);
     }
 
     @Test
     public void testRequestManagerBuilder() {
         Dispatcher dispatcher = new Dispatcher(services);
-        Context context = new Context();
         LoadBalancer loadBalancer = new LoadBalancer();
         FleetManager fleetManager = new FleetManager();
 
@@ -73,7 +69,6 @@ public class TestRequestManagement {
         RequestManager requestManager = RequestManager.getBuilder()
                 .withFleetManager(fleetManager)
                 .withLoadBalancer(loadBalancer)
-                .withContext(context)
                 .withDispatcher(dispatcher)
                 .build();
 

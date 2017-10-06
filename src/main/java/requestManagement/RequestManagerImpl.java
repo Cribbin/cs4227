@@ -7,13 +7,11 @@ import requestManagement.loadBalancing.LoadBalancer;
 
 public class RequestManagerImpl implements RequestManager {
 
-    private Context context = null;
     private Dispatcher dispatcher = null;
     private LoadBalancer loadBalancer = null;
     private FleetManager fleetManager = null;
 
     RequestManagerImpl(RequestManagerBuilder builder) {
-        context = builder.getContext();
         dispatcher = builder.getDispatcher();
         loadBalancer = builder.getLoadBalancer();
         fleetManager = builder.getFleetManager();
@@ -23,7 +21,10 @@ public class RequestManagerImpl implements RequestManager {
     public HttpResponse handleRequest(HttpRequest request) {
 
         /* Dispatch incoming request event to all subscribed services. */
-        dispatcher.dispatchIncomingRequest(request, context);
+
+        Context<HttpRequest> requestContext = new Context<>();
+        requestContext.setEvent(request);
+        dispatcher.dispatchIncomingRequest(requestContext);
 
         /* Actually forward the request. This is where the Load Balancer would be called.*/
 
@@ -31,8 +32,10 @@ public class RequestManagerImpl implements RequestManager {
 
         /* response = loadBalancer.handleRequest(request); */
 
+        Context<HttpResponse> responseContext = new Context<>();
+        responseContext.setEvent(response);
         /* Dispatch outgoing response to all subscribed services */
-        dispatcher.dispatchOutgoingResponse(response, context);
+        dispatcher.dispatchOutgoingResponse(responseContext);
 
         return response;
     }
