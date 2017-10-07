@@ -11,7 +11,7 @@ public class HeathCheckImplementation implements HealthCheck {
     private List<Host> allHosts;
 
     public HeathCheckImplementation(){
-        host=new Host("1","127.0.0.2","1","1",true);
+        host=null;
     }
 
     public void runHealthCheck(){

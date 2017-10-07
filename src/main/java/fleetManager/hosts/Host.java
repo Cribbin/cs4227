@@ -6,7 +6,7 @@ public class Host {
     private final String ipv4;
     private final String DNS;
     private String port;
-    private boolean publicIP;
+    private final boolean publicIP;
     private String state;
 
     public Host(String state, String ipv4, String dns, String port, boolean publicIP){
