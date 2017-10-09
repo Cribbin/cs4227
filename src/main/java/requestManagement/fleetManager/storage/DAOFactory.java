@@ -1,4 +1,4 @@
-package fleetManager.storage;
+package requestManagement.fleetManager.storage;
 
 public class DAOFactory {
 

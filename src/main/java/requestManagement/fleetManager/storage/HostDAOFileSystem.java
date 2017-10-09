@@ -1,6 +1,6 @@
-package fleetManager.storage;
+package requestManagement.fleetManager.storage;
 
-import fleetManager.hosts.Host;
+import requestManagement.fleetManager.hosts.Host;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

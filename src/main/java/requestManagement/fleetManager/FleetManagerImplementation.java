@@ -1,10 +1,9 @@
-package fleetManager;
+package requestManagement.fleetManager;
 
-import fleetManager.hosts.Host;
-import fleetManager.storage.DAOFactory;
-import fleetManager.storage.HostDAO;
+import requestManagement.fleetManager.hosts.Host;
+import requestManagement.fleetManager.storage.DAOFactory;
+import requestManagement.fleetManager.storage.HostDAO;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class FleetManagerImplementation implements FleetManager {
@@ -47,4 +46,6 @@ public class FleetManagerImplementation implements FleetManager {
         }
         return fleetManagerInstance;
     }
+
+    public void test(){}
 }

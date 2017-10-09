@@ -1,4 +1,4 @@
-package fleetManager.hosts;
+package requestManagement.fleetManager.hosts;
 
 public class Host {
     private HostState hostState;

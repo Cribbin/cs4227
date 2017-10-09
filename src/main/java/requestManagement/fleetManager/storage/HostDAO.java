@@ -1,10 +1,10 @@
-package fleetManager;
+package requestManagement.fleetManager.storage;
 
-import fleetManager.hosts.Host;
+import requestManagement.fleetManager.hosts.Host;
 
 import java.util.List;
 
-public interface FleetManager {
+public interface HostDAO {
     void addHost(Host host);
     void removeHost(Host host);
     void enableHost(Host host);
