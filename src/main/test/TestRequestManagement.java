@@ -1,8 +1,5 @@
-import org.apache.http.HttpRequest;
-import org.apache.http.HttpResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import requestManagement.Context;
 import requestManagement.Dispatcher;
 import requestManagement.RequestManager;
 import requestManagement.Service;
@@ -16,7 +13,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-public class TestRequestManagement {
+class TestRequestManagement {
 
     private Collection<Service> services = null;
     private Service service = null;
@@ -34,7 +31,7 @@ public class TestRequestManagement {
     }
 
     @Test
-    public void testDispatcher() {
+    void testDispatcherEventDispatching() {
 
         /* Test that the dispatcher is correctly dispatching both events */
 
@@ -47,7 +44,7 @@ public class TestRequestManagement {
     }
 
     @Test
-    public void testDispatcherDeregister() {
+    void testDispatcherDeregister() {
 
         /* Remove service from dispatcher notification collection and ensure it does not receive the event. */
 
@@ -60,7 +57,7 @@ public class TestRequestManagement {
     }
 
     @Test
-    public void testRequestManagerBuilder() {
+    void testRequestManagerBuilder() {
         Dispatcher dispatcher = new Dispatcher(services);
         LoadBalancer loadBalancer = new LoadBalancer();
         FleetManager fleetManager = new FleetManager();
