@@ -1,4 +1,3 @@
 package requestManagement.loadBalancing;
 
-public class LoadBalancer {
-}
+public class LoadBalancer {}

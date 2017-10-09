@@ -1,8 +1,5 @@
 package requestManagement;
 
-import org.apache.http.HttpRequest;
-import org.apache.http.HttpResponse;
-
 import java.util.Collection;
 
 /**
@@ -15,6 +12,7 @@ import java.util.Collection;
  * the services (e.g. ArrayList).
  */
 public class Dispatcher {
+
     private Collection<Service> services;
 
     public Dispatcher(Collection<Service> services) {

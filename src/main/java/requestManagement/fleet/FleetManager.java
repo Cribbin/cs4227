@@ -1,4 +1,3 @@
 package requestManagement.fleet;
 
-public class FleetManager {
-}
+public class FleetManager {}
