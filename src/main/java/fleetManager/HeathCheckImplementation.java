@@ -14,6 +14,7 @@ public class HeathCheckImplementation implements HealthCheck {
         host=null;
     }
 
+    @Override
     public void runHealthCheck(){
         fleetManager=FleetManagerImplementation.getInstance();
         fleetManager.addHost(host);

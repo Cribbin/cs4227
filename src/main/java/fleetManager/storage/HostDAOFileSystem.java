@@ -22,6 +22,7 @@ public class HostDAOFileSystem implements HostDAO{
 
     }
 
+    @Override
     public void addHost(Host host){
         readFile();
         if(!contains(host.getIpv4())) {
@@ -35,6 +36,7 @@ public class HostDAOFileSystem implements HostDAO{
         }
     }
 
+    @Override
     public void removeHost(Host host) {
         readFile();
         try {
@@ -52,6 +54,7 @@ public class HostDAOFileSystem implements HostDAO{
         }
     }
 
+    @Override
     public void enableHost(Host host) {
         readFile();
         try {
@@ -70,6 +73,7 @@ public class HostDAOFileSystem implements HostDAO{
         }
     }
 
+    @Override
     public void disableHost(Host host) {
         readFile();
         try {
@@ -88,6 +92,7 @@ public class HostDAOFileSystem implements HostDAO{
         }
     }
 
+    @Override
     public List<Host> getHosts() {
         readFile();
         List<Host> hosts=new ArrayList<Host>();

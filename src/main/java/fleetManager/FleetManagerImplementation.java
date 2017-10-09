@@ -16,22 +16,27 @@ public class FleetManagerImplementation implements FleetManager {
         hostDataAccess= new DAOFactory().getDAO();
     }
 
+    @Override
     public void addHost(Host host){
         hostDataAccess.addHost(host);
     }
 
+    @Override
     public void removeHost(Host host){
         hostDataAccess.removeHost(host);
     }
 
+    @Override
     public void enableHost(Host host){
         hostDataAccess.enableHost(host);
     }
 
+    @Override
     public void disableHost(Host host){
         hostDataAccess.disableHost(host);
     }
 
+    @Override
     public List<Host> getHosts(){
         return hostDataAccess.getHosts();
     }
