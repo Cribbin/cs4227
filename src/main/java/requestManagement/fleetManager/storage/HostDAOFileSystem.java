@@ -23,10 +23,10 @@ public class HostDAOFileSystem implements HostDAO {
     @Override
     public void addHost(Host host) {
         readFile();
-        if(!dataFromFileContainsIP(host.getIpv4())) {
+        if(!dataFromFileContainsIp(host.getIpv4())) {
             try {
                 fw = new FileWriter(filename, true); //the true will append the new data
-                fw.write(host.getIpv4() + "," + host.getDNS() + "," + host.getPort() + "," + host.getState() + "," + host.getSubnet());//appends the string to the file
+                fw.write(hostToStringFormat(host));//appends the string to the file
                 fw.close();
             } catch (IOException ioe) {
                 System.err.println("IOException: " + ioe.getMessage());
@@ -38,12 +38,8 @@ public class HostDAOFileSystem implements HostDAO {
     public void removeHost(Host host) {
         readFile();
         try {
-            if (dataFromFileContainsIP(host.getIpv4())) {
-                for (int i = 0; i < dataFromFile.size(); i++) {
-                    if (dataFromFile.get(i).contains(host.getIpv4())) {
-                        dataFromFile.remove(i);
-                    }
-                }
+            if (dataFromFileContainsIp(host.getIpv4())) {
+                dataFromFile.removeIf(s -> s.contains(host.getIpv4()));
                 writeToFile();
             }
         }
@@ -56,7 +52,7 @@ public class HostDAOFileSystem implements HostDAO {
     public void enableHost(Host host) {
         readFile();
         try {
-            if (dataFromFileContainsIP(host.getIpv4())) {
+            if (dataFromFileContainsIp(host.getIpv4())) {
                 for(List<String> listIterator : dataFromFile){
                     if (listIterator.contains(host.getIpv4())) {
                         listIterator.set(3, "active");
@@ -76,7 +72,7 @@ public class HostDAOFileSystem implements HostDAO {
     public void disableHost(Host host) {
         readFile();
         try {
-            if (dataFromFileContainsIP(host.getIpv4())) {
+            if (dataFromFileContainsIp(host.getIpv4())) {
                 for(List<String> listIterator : dataFromFile){
                     if (listIterator.contains(host.getIpv4())) {
                         listIterator.set(3, "inactive");
@@ -154,11 +150,13 @@ public class HostDAOFileSystem implements HostDAO {
         }
     }
 
-    private boolean dataFromFileContainsIP(String ip) {
-        for(List<String> list: dataFromFile) {
-            if(list.contains(ip))
-                return true;
-        }
+    private boolean dataFromFileContainsIp(String ip) {
+        if(dataFromFile.stream().anyMatch( l -> l.contains(ip)))
+            return true;
         return false;
+    }
+
+    private String hostToStringFormat(Host host){
+        return host.getIpv4() + "," + host.getDNS() + "," + host.getPort() + "," + host.getState() + "," + host.getSubnet();
     }
 }

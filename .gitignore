@@ -2,3 +2,4 @@
 *.iml
 /src/target/*
 target/*
+Hosts.txt

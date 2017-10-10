@@ -12,16 +12,13 @@ public class HostDAOJSON implements HostDAO {
     public void addHost(Host host){}
 
     @Override
-    public void disableHost(Host host) {
-    }
+    public void disableHost(Host host) {}
 
     @Override
-    public void removeHost(Host host) {
-    }
+    public void removeHost(Host host) {}
 
     @Override
-    public void enableHost(Host host) {
-    }
+    public void enableHost(Host host) {}
 
     @Override
     public List<Host> getHosts() {

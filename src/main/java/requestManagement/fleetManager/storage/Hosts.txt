@@ -1,2 +1,0 @@
-52.19.208.224,ec2-52-19-208-224.eu-west-1.compute.amazonaws.com,80,active,public
-10.0.4.159,ip-10-0-4-159.eu-west-1.compute.internal,80.active,private

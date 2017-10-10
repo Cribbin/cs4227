@@ -7,16 +7,14 @@ import java.util.List;
 public class HeathCheckImplementation implements HealthCheck {
 
     private FleetManager fleetManager;
-    private Host host;
+    private Host host = null;
     private List<Host> allHosts;
 
-    public HeathCheckImplementation() {
-        host= new Host("1","111","1","1",true);
-    }
+    public HeathCheckImplementation() {}
 
     @Override
     public void runHealthCheck() {
-        fleetManager = FleetManagerImplementation.getInstance();
+        fleetManager = FleetManager.getInstance();
         fleetManager.addHost(host);
         fleetManager.removeHost(host);
         fleetManager.disableHost(host);

@@ -36,10 +36,7 @@ public class Host {
     }
 
     public String getSubnet() {
-        if(publicIP)
-            return "public";
-
-        return "private";
+        return publicIP ?  "public" : "private";
     }
 
     public void setState(String state) {
@@ -51,7 +48,7 @@ public class Host {
         this.port = port;
     }
 
-    public boolean isPublicIP() {
+    public boolean isPublicIp() {
         return publicIP;
     }
 }
