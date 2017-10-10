@@ -1,4 +1,3 @@
 package requestManagement.fleetManager.hosts;
 
-public class ActiveHost implements HostState {
-}
+public class ActiveHost implements HostState {}

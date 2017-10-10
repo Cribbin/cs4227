@@ -10,17 +10,17 @@ public class HeathCheckImplementation implements HealthCheck {
     private Host host;
     private List<Host> allHosts;
 
-    public HeathCheckImplementation(){
-        host=null;
+    public HeathCheckImplementation() {
+        host= new Host("1","111","1","1",true);
     }
 
     @Override
-    public void runHealthCheck(){
-        fleetManager=FleetManagerImplementation.getInstance();
+    public void runHealthCheck() {
+        fleetManager = FleetManagerImplementation.getInstance();
         fleetManager.addHost(host);
         fleetManager.removeHost(host);
         fleetManager.disableHost(host);
         fleetManager.enableHost(host);
-        allHosts=fleetManager.getHosts();
+        allHosts = fleetManager.getHosts();
     }
 }

@@ -3,7 +3,8 @@ import org.junit.jupiter.api.Test;
 import requestManagement.Dispatcher;
 import requestManagement.RequestManager;
 import requestManagement.Service;
-import requestManagement.fleet.FleetManager;
+import requestManagement.fleetManager.FleetManager;
+import requestManagement.fleetManager.FleetManagerImplementation;
 import requestManagement.loadBalancing.LoadBalancer;
 
 import java.util.ArrayList;
@@ -60,7 +61,7 @@ class TestRequestManagement {
     void testRequestManagerBuilder() {
         Dispatcher dispatcher = new Dispatcher(services);
         LoadBalancer loadBalancer = new LoadBalancer();
-        FleetManager fleetManager = new FleetManager();
+        FleetManager fleetManager = FleetManagerImplementation.getInstance();
 
         /* Test that the request manager builds successfully with valid member variables */
         RequestManager requestManager = RequestManager.getBuilder()

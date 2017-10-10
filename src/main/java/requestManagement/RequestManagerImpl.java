@@ -2,7 +2,7 @@ package requestManagement;
 
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
-import requestManagement.fleet.FleetManager;
+import requestManagement.fleetManager.FleetManager;
 import requestManagement.loadBalancing.LoadBalancer;
 
 public class RequestManagerImpl implements RequestManager {

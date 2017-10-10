@@ -1,4 +1,3 @@
 package requestManagement.fleetManager.hosts;
 
-public interface HostState {
-}
+public interface HostState {}
