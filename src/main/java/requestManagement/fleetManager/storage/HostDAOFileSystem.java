@@ -23,10 +23,13 @@ public class HostDAOFileSystem implements HostDAO {
     @Override
     public void addHost(Host host) {
         readFile();
+
+        /* Checks the Host isn't present in the file */
         if(!dataFromFileContainsIp(host.getIpv4())) {
+            /* Appends to Host String to the file */
             try {
                 fw = new FileWriter(filename, true); //the true will append the new data
-                fw.write(hostToStringFormat(host));//appends the string to the file
+                fw.write(host.toString());//appends the string to the file
                 fw.close();
             } catch (IOException ioe) {
                 System.err.println("IOException: " + ioe.getMessage());
@@ -38,7 +41,9 @@ public class HostDAOFileSystem implements HostDAO {
     public void removeHost(Host host) {
         readFile();
         try {
+            /* Checks the Host is present in the file */
             if (dataFromFileContainsIp(host.getIpv4())) {
+                /* Removes the Host String from the data List and writes to the file */
                 dataFromFile.removeIf(s -> s.contains(host.getIpv4()));
                 writeToFile();
             }
@@ -52,7 +57,9 @@ public class HostDAOFileSystem implements HostDAO {
     public void enableHost(Host host) {
         readFile();
         try {
+            /* Checks the Host is present in the file */
             if (dataFromFileContainsIp(host.getIpv4())) {
+                /* Iterates through the data List and updates the Hosts data, followed by writing to the file */
                 for(List<String> listIterator : dataFromFile){
                     if (listIterator.contains(host.getIpv4())) {
                         listIterator.set(3, "active");
@@ -72,7 +79,9 @@ public class HostDAOFileSystem implements HostDAO {
     public void disableHost(Host host) {
         readFile();
         try {
+            /* Checks the Host is present in the file */
             if (dataFromFileContainsIp(host.getIpv4())) {
+                /* Iterates through the data List and updates the Hosts data, followed by writing to the file */
                 for(List<String> listIterator : dataFromFile){
                     if (listIterator.contains(host.getIpv4())) {
                         listIterator.set(3, "inactive");
@@ -100,14 +109,14 @@ public class HostDAOFileSystem implements HostDAO {
         String subnet;
         boolean isPublic = false;
         try {
+            /* Iterates through the data List, creating Host objects and adding them to a List of Hosts */
             for (List<String> hostData : dataFromFile) {
                 state=hostData.get(3);
                 ipv4=hostData.get(0);
                 dns=hostData.get(1);
                 port=hostData.get(2);
                 subnet=hostData.get(4);
-                if (subnet.equals("public"))
-                    isPublic = true;
+                isPublic = subnet.equals("public");
                 hostToAdd = new Host(state, ipv4, dns, port, isPublic);
                 hosts.add(hostToAdd);
             }
@@ -121,6 +130,7 @@ public class HostDAOFileSystem implements HostDAO {
     private void readFile() {
         FileReader fr;
         List<String> listToBeAdded;
+        /* Reads the file, splits each line into a List and adds these Lists to a List */
         try {
             dataFromFile = new ArrayList<List<String>>();
             fr = new FileReader(filename);
@@ -138,6 +148,7 @@ public class HostDAOFileSystem implements HostDAO {
     }
 
     private void writeToFile() {
+        /* Writes the data List to the file */
         try {
             fw = new FileWriter(filename);
             for(List<String> list: dataFromFile){
@@ -151,12 +162,6 @@ public class HostDAOFileSystem implements HostDAO {
     }
 
     private boolean dataFromFileContainsIp(String ip) {
-        if(dataFromFile.stream().anyMatch( l -> l.contains(ip)))
-            return true;
-        return false;
-    }
-
-    private String hostToStringFormat(Host host){
-        return host.getIpv4() + "," + host.getDNS() + "," + host.getPort() + "," + host.getState() + "," + host.getSubnet();
+        return dataFromFile.stream().anyMatch( l -> l.contains(ip));
     }
 }
