@@ -21,7 +21,6 @@
     <groupId>cs4227</groupId>
     <artifactId>cs4227</artifactId>
     <version>1.0-SNAPSHOT</version>
-
     <dependencies>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>

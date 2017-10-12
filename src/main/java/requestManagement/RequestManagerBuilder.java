@@ -1,6 +1,6 @@
 package requestManagement;
 
-import requestManagement.fleet.FleetManager;
+import requestManagement.fleetManager.FleetManager;
 import requestManagement.loadBalancing.LoadBalancer;
 
 public class RequestManagerBuilder {
