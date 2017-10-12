@@ -76,7 +76,7 @@ public class HostDAOFileSystem implements HostDAO {
     private List<List<String>> readFile() {
         FileReader fr;
         List<String> listToBeAdded;
-        List<List<String>> hostsFromFile = new ArrayList<>();;
+        List<List<String>> hostsFromFile = new ArrayList<>();
         /* Reads the file, splits each line into a List and adds these Lists to a List */
         try {
             fr = new FileReader(filename);
@@ -119,7 +119,7 @@ public class HostDAOFileSystem implements HostDAO {
         String subnet = hostData.get(4);
         boolean isPublic = false;
         isPublic = subnet.equals("public");
-         Host hostToAdd = new Host(state, ipv4, dns, port, isPublic);
+        Host hostToAdd = new Host(state, ipv4, dns, port, isPublic);
         return hostToAdd;
     }
 
