@@ -3,9 +3,9 @@ package requestManagement.loadBalancer;
 import requestManagement.fleetManager.FleetManager;
 import requestManagement.fleetManager.hosts.ActiveHost;
 
-public abstract class LBStrategy {
+public abstract class LbStrategy {
 
-    public LBStrategy(FleetManager fleetManager) {}
+    public LbStrategy(FleetManager fleetManager) {}
 
     public abstract ActiveHost getNextHost();
 }

@@ -3,7 +3,7 @@ package requestManagement.loadBalancer;
 import requestManagement.fleetManager.FleetManager;
 import requestManagement.fleetManager.hosts.ActiveHost;
 
-public class LbRoundRobin extends LBStrategy {
+public class LbRoundRobin extends LbStrategy {
 
     public LbRoundRobin(FleetManager fleetManager) {
         super(fleetManager);

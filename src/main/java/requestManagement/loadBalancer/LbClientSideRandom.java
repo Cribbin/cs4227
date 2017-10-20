@@ -3,7 +3,7 @@ package requestManagement.loadBalancer;
 import requestManagement.fleetManager.FleetManager;
 import requestManagement.fleetManager.hosts.ActiveHost;
 
-public class LbClientSideRandom extends LBStrategy {
+public class LbClientSideRandom extends LbStrategy {
 
     public LbClientSideRandom(FleetManager fleetManager) {
         super(fleetManager);

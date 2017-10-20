@@ -4,12 +4,12 @@ import requestManagement.fleetManager.FleetManager;
 
 public class LoadBalancerBuilder {
 
-    private LBStrategy loadBalancingStrategy;
+    private LbStrategy loadBalancingStrategy;
     private FleetManager fleetManager;
 
     LoadBalancerBuilder() {}
 
-    public LoadBalancerBuilder withLoadBalancingStrategy(LBStrategy loadBalancingStrategy) {
+    public LoadBalancerBuilder withLoadBalancingStrategy(LbStrategy loadBalancingStrategy) {
         this.setLoadBalancingStrategy(loadBalancingStrategy);
 
         return this;
@@ -21,7 +21,7 @@ public class LoadBalancerBuilder {
         return this;
     }
 
-    private void setLoadBalancingStrategy(LBStrategy loadBalancingStrategy) {
+    private void setLoadBalancingStrategy(LbStrategy loadBalancingStrategy) {
         this.loadBalancingStrategy = loadBalancingStrategy;
     }
 
@@ -29,7 +29,7 @@ public class LoadBalancerBuilder {
         this.fleetManager = fleetManager;
     }
 
-    LBStrategy getLoadBalancingStrategy(){
+    LbStrategy getLoadBalancingStrategy(){
         return loadBalancingStrategy;
     }
 
