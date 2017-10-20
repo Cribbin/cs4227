@@ -4,7 +4,7 @@ import requestManagement.fleetManager.FleetManager;
 
 public class LBRoundRobin extends LBStrategy {
 
-    public LBRoundRobin(FleetManager fleetManager){
+    public LBRoundRobin(FleetManager fleetManager) {
         super(fleetManager);
     }
 

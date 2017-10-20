@@ -2,7 +2,7 @@ package requestManagement.loadBalancer;
 
 import requestManagement.fleetManager.FleetManager;
 
-public class LoadBalancerImpl  implements LoadBalancer {
+public class LoadBalancerImpl implements LoadBalancer {
     private LBStrategy loadBalancingStrategy;
     private FleetManager fleetManager;
 
@@ -11,7 +11,9 @@ public class LoadBalancerImpl  implements LoadBalancer {
         fleetManager = builder.getFleetManager();
     }
 
-    public String executeStrategy() { return loadBalancingStrategy.getNextHost(); }
+    public String executeStrategy() {
+        return loadBalancingStrategy.getNextHost();
+    }
 
     public LBStrategy getLoadBalancingStrategy() {
         return loadBalancingStrategy;
@@ -20,5 +22,4 @@ public class LoadBalancerImpl  implements LoadBalancer {
     public FleetManager getFleetManager() {
         return fleetManager;
     }
-
 }

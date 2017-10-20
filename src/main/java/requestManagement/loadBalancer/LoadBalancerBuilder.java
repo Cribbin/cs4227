@@ -7,8 +7,7 @@ public class LoadBalancerBuilder {
     private LBStrategy loadBalancingStrategy;
     private FleetManager fleetManager;
 
-    LoadBalancerBuilder() {
-    }
+    LoadBalancerBuilder() {}
 
     public LoadBalancerBuilder withLoadBalancingStrategy(LBStrategy loadBalancingStrategy) {
         this.setLoadBalancingStrategy(loadBalancingStrategy);
