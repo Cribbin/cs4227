@@ -1,8 +1,10 @@
-package LoadBalancer;
+package requestManagement.loadBalancer;
+
+import requestManagement.fleetManager.FleetManager;
 
 public class LoadBalancerImpl  implements LoadBalancer {
     private LBStrategy loadBalancingStrategy;
-    private String fleetManager;
+    private FleetManager fleetManager;
 
     LoadBalancerImpl(LoadBalancerBuilder builder) {
         loadBalancingStrategy = builder.getLoadBalancingStrategy();
@@ -15,7 +17,7 @@ public class LoadBalancerImpl  implements LoadBalancer {
         return loadBalancingStrategy;
     }
 
-    public String getFleetManager() {
+    public FleetManager getFleetManager() {
         return fleetManager;
     }
 

@@ -1,8 +1,10 @@
-package LoadBalancer;
+package requestManagement.loadBalancer;
+
+import requestManagement.fleetManager.FleetManager;
 
 public class LBRoundRobin extends LBStrategy {
 
-    public LBRoundRobin(String fleetManager){
+    public LBRoundRobin(FleetManager fleetManager){
         super(fleetManager);
     }
 

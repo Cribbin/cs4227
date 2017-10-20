@@ -1,8 +1,10 @@
-package LoadBalancer;
+package requestManagement.loadBalancer;
+
+import requestManagement.fleetManager.FleetManager;
 
 public class LBClientSideRandom extends LBStrategy {
 
-    public LBClientSideRandom(String fleetManager) {
+    public LBClientSideRandom(FleetManager fleetManager) {
         super(fleetManager);
     }
 

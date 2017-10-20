@@ -1,9 +1,11 @@
-package LoadBalancer;
+package requestManagement.loadBalancer;
+
+import requestManagement.fleetManager.FleetManager;
 
 public class LoadBalancerBuilder {
 
     private LBStrategy loadBalancingStrategy;
-    private String fleetManager;
+    private FleetManager fleetManager;
 
     LoadBalancerBuilder() {
     }
@@ -14,7 +16,7 @@ public class LoadBalancerBuilder {
         return this;
     }
 
-    public LoadBalancerBuilder withFleetManager(String fleetManager) {
+    public LoadBalancerBuilder withFleetManager(FleetManager fleetManager) {
         this.setFleetManager(fleetManager);
 
         return this;
@@ -24,7 +26,7 @@ public class LoadBalancerBuilder {
         this.loadBalancingStrategy = loadBalancingStrategy;
     }
 
-    private void setFleetManager(String fleetManager){
+    private void setFleetManager(FleetManager fleetManager){
         this.fleetManager = fleetManager;
     }
 
@@ -32,7 +34,7 @@ public class LoadBalancerBuilder {
         return loadBalancingStrategy;
     }
 
-    String getFleetManager(){
+    FleetManager getFleetManager(){
         return fleetManager;
     }
 

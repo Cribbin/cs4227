@@ -1,7 +1,4 @@
-package LoadBalancer;
-
-import org.apache.http.HttpRequest;
-import org.apache.http.HttpResponse;
+package requestManagement.loadBalancer;
 
 public interface LoadBalancer {
 
