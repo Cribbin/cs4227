@@ -10,7 +10,7 @@ public class LbRoundRobin extends LBStrategy {
     }
 
     @Override
-    public ActiveHost getNextHost(){
+    public ActiveHost getNextHost() {
         return new ActiveHost();
     }
 }
