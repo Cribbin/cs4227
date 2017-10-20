@@ -1,6 +1,9 @@
 package LoadBalancer;
 
-public interface LBStrategy {
+public abstract class LBStrategy {
 
-    public String balanceLoad();
+
+    public LBStrategy(String fleetManager) {}
+
+    public abstract String getNextHost();
 }
