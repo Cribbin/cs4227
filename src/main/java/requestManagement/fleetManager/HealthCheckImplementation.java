@@ -4,12 +4,12 @@ import requestManagement.fleetManager.hosts.Host;
 
 import java.util.List;
 
-public class HeathCheckImplementation implements HealthCheck {
+public class HealthCheckImplementation implements HealthCheck {
 
     private FleetManager fleetManager;
     private List<Host> allHosts;
 
-    public HeathCheckImplementation() {}
+    public HealthCheckImplementation() {}
 
     @Override
     public void runHealthCheck() {
