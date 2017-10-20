@@ -4,7 +4,7 @@ import requestManagement.Dispatcher;
 import requestManagement.RequestManager;
 import requestManagement.Service;
 import requestManagement.fleetManager.FleetManager;
-import requestManagement.loadBalancing.LoadBalancer;
+import requestManagement.loadBalancer.LoadBalancer;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -59,7 +59,7 @@ class TestRequestManagement {
     @Test
     void testRequestManagerBuilder() {
         Dispatcher dispatcher = new Dispatcher(services);
-        LoadBalancer loadBalancer = new LoadBalancer();
+        LoadBalancer loadBalancer = null;
         FleetManager fleetManager = FleetManager.getInstance();
 
         /* Test that the request manager builds successfully with valid member variables */
