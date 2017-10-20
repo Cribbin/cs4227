@@ -1,10 +1,11 @@
 package requestManagement;
 
-import org.apache.http.HttpRequest;
+
 import org.apache.http.HttpResponse;
+import requests.HttpRequest;
 
 /**
- * Handles a HttpRequest.
+ * Handles a SimpleHttpRequest.
  *
  * An implementation of this class will handle LoadBalancing of requests across a preconfigured fleet. It will also
  * handle Fleet Management from an end user perspective.
