@@ -9,7 +9,7 @@ public class Host {
     private final String ipv4;
     private final boolean publicIp;
     private final String dns;
-    private final String port;
+    private final int port;
     private HostState state;
 
     private Host(HostBuilder builder) {
@@ -31,13 +31,13 @@ public class Host {
     }
 
     /** Returns a string value of the port open of a host */
-    public String getPort() {
+    public int getPort() {
         return port;
     }
 
     /** Returns a string value of the state of a host */
-    public String getState() {
-        return this.state.toString();
+    public HostState getState() {
+        return state;
     }
 
     /** Returns a string value of the subnet type of a host */
@@ -62,7 +62,7 @@ public class Host {
             .append(",").append(this.getPort())
             .append(",").append(this.getState())
             .append(",").append(this.getSubnet())
-            .toString();
+            .append("\n").toString();
     }
 
     public static class HostBuilder {
@@ -70,7 +70,7 @@ public class Host {
         private final boolean publicIp;
         private String dns;
         private HostState state;
-        private String port;
+        private int port;
 
         public HostBuilder(String ipv4) {
             this.ipv4 = ipv4;
@@ -82,7 +82,7 @@ public class Host {
             return this;
         }
 
-        public HostBuilder withPort(String port) {
+        public HostBuilder withPort(int port) {
             this.port = port;
             return this;
         }

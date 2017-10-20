@@ -11,15 +11,21 @@ import java.util.Arrays;
 import java.util.List;
 
 public class HostDAOFileSystem implements HostDAO {
-    private static String hostFile = "hosts.txt";
+    private static final int IP = 0;
+    private static final int DNS = 1;
+    private static final int PORT = 2;
+    private static final int STATE = 3;
+
+    private static String hostFile;
 
     private FileWriter fw;
     private List<List<String>> fleetInformation;
 
-    public HostDAOFileSystem() {}
+    public HostDAOFileSystem() {
+       this("hosts.txt");
+    }
 
-    // For testing
-    HostDAOFileSystem(String hostFilePath) {
+    public HostDAOFileSystem(String hostFilePath) {
         hostFile = hostFilePath;
     }
 
@@ -100,8 +106,9 @@ public class HostDAOFileSystem implements HostDAO {
     private void writeToFile() {
         try {
             fw = new FileWriter(hostFile);
-            for(List<String> list: fleetInformation){
-                fw.write(list.get(0)+","+list.get(1)+","+list.get(2)+","+list.get(3)+","+list.get(4)+"\n");
+
+            for (List<String> list : fleetInformation) {
+                fw.write(parseHostData(list).toString());
             }
             fw.close();
         }
@@ -114,20 +121,20 @@ public class HostDAOFileSystem implements HostDAO {
         return fleetInformation.stream().anyMatch( l -> l.contains(ip));
     }
 
-    public Host parseHostData(List<String> hostData){
-        return new Host.HostBuilder(hostData.get(0)) // ip
-            .withDns(hostData.get(1))
-            .withPort(hostData.get(2))
-            .withState(hostData.get(3))
+    private Host parseHostData(List<String> hostData){
+        return new Host.HostBuilder(hostData.get(IP))
+            .withDns(hostData.get(DNS))
+            .withPort(Integer.valueOf(hostData.get(PORT)))
+            .withState(hostData.get(STATE))
             .build();
     }
 
-    public void setStateForHostInFile(Host host, String state){
+    private void setStateForHostInFile(Host host, String state){
         try {
             if (hostIsPresentInFile(host.getIpv4())) {
                 for(List<String> hostData : fleetInformation){
                     if (hostData.contains(host.getIpv4())) {
-                        hostData.set(3, state);
+                        hostData.set(STATE, state);
                         host.setState(state);
                         break;
                     }

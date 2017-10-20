@@ -8,7 +8,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.mock;
 
-
 class TestFleetManagement {
     private static final String ACTIVE_HOST = "active";
     private static final String INACTIVE_HOST = "inactive";
@@ -16,7 +15,7 @@ class TestFleetManagement {
     private static final String IP_2 = "127.0.0.2";
     private static final String IP_3 = "127.0.0.3";
     private static final String DNS = "SampleDNS";
-    private static final String PORT_80 = "80";
+    private static final int PORT_80 = 80;
 
     private FleetManager fleetManager;
     private Host testHost1;
