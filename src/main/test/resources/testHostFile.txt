@@ -1,0 +1,2 @@
+10.0.0.1,testDns1,80,active,private
+10.0.0.2,testDns2,80,inactive,private

@@ -11,19 +11,24 @@ import java.util.Arrays;
 import java.util.List;
 
 public class HostDAOFileSystem implements HostDAO {
+    private static String hostFile = "hosts.txt";
 
-    private static final String FILENAME = "Hosts.txt";
     private FileWriter fw;
     private List<List<String>> fleetInformation;
 
     public HostDAOFileSystem() {}
 
+    // For testing
+    HostDAOFileSystem(String hostFilePath) {
+        hostFile = hostFilePath;
+    }
+
     @Override
     public void addHost(Host host) {
         this.fleetInformation = readFile();
-        if(!hostIsPresentInFile(host.getIpv4())) {
+        if (!hostIsPresentInFile(host.getIpv4())) {
             try {
-                fw = new FileWriter(FILENAME, true); //the true will append the new data
+                fw = new FileWriter(hostFile, true); //the true will append the new data
                 fw.write(host.toString());//appends the string to the file
                 fw.close();
             } catch (IOException ioe) {
@@ -77,7 +82,7 @@ public class HostDAOFileSystem implements HostDAO {
         List<List<String>> hostsFromFile = new ArrayList<>();
         /* Reads the file, splits each line into a List and adds these Lists to a List */
         try {
-            fr = new FileReader(FILENAME);
+            fr = new FileReader(hostFile);
             BufferedReader br = new BufferedReader(fr);
             String s;
             while((s = br.readLine()) != null) {
@@ -94,7 +99,7 @@ public class HostDAOFileSystem implements HostDAO {
 
     private void writeToFile() {
         try {
-            fw = new FileWriter(FILENAME);
+            fw = new FileWriter(hostFile);
             for(List<String> list: fleetInformation){
                 fw.write(list.get(0)+","+list.get(1)+","+list.get(2)+","+list.get(3)+","+list.get(4)+"\n");
             }
