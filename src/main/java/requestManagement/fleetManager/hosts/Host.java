@@ -26,7 +26,7 @@ public class Host {
     }
 
     /** Returns a string value of the DNS of a host */
-    public String getDNS() {
+    public String getDns() {
         return dns;
     }
 
@@ -57,12 +57,15 @@ public class Host {
     /** Overrides the toString method for this object */
     @Override
     public String toString() {
-        return this.getIpv4() + "," + this.getDNS() + "," + this.getPort() + "," + this.getState() + "," + this.getSubnet();
+        return new StringBuilder(this.getIpv4())
+            .append(",").append(this.getDns())
+            .append(",").append(this.getPort())
+            .append(",").append(this.getState())
+            .append(",").append(this.getSubnet())
+            .toString();
     }
 
     public static class HostBuilder {
-        private static final String publicIpRegex = "(^127\\.)|(^10\\.)|(^172\\.1[6-9]\\.)|(^172\\.2[0-9]\\.)|(^172\\.3[0-1]\\.)|(^192\\.168\\.)";
-
         private final String ipv4;
         private final boolean publicIp;
         private String dns;
@@ -71,7 +74,7 @@ public class Host {
 
         public HostBuilder(String ipv4) {
             this.ipv4 = ipv4;
-            this.publicIp = !ipv4.matches(publicIpRegex);
+            this.publicIp = isPublicIp(ipv4);
         }
 
         public HostBuilder withDns(String dns) {
@@ -91,6 +94,11 @@ public class Host {
 
         public Host build() {
             return new Host(this);
+        }
+
+        // TODO Add regex to check for private/public. Defaulting to private for now
+        private boolean isPublicIp(String ipv4) {
+            return false;
         }
     }
 }
