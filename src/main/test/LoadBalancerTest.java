@@ -1,5 +1,5 @@
 import requestManagement.fleetManager.FleetManager;
-import requestManagement.loadBalancer.LBRoundRobin;
+import requestManagement.loadBalancer.LbRoundRobin;
 import requestManagement.loadBalancer.LBStrategy;
 import requestManagement.loadBalancer.LoadBalancer;
 import org.junit.jupiter.api.Test;
@@ -10,7 +10,7 @@ public class LoadBalancerTest {
     @Test
     void loadBalancerBuilderTest() {
         FleetManager fleetManager = mock(FleetManager.class);
-        LBStrategy loadBalancingStrategy = new LBRoundRobin(fleetManager);
+        LBStrategy loadBalancingStrategy = new LbRoundRobin(fleetManager);
 
         LoadBalancer loadBalancer = LoadBalancer.getBuilder()
                 .withLoadBalancingStrategy(loadBalancingStrategy)

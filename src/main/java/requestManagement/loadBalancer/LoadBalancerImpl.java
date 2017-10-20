@@ -1,6 +1,7 @@
 package requestManagement.loadBalancer;
 
 import requestManagement.fleetManager.FleetManager;
+import requestManagement.fleetManager.hosts.ActiveHost;
 
 public class LoadBalancerImpl implements LoadBalancer {
     private LBStrategy loadBalancingStrategy;
@@ -11,7 +12,7 @@ public class LoadBalancerImpl implements LoadBalancer {
         fleetManager = builder.getFleetManager();
     }
 
-    public String executeStrategy() {
+    ActiveHost executeStrategy() {
         return loadBalancingStrategy.getNextHost();
     }
 
