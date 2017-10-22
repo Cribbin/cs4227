@@ -16,18 +16,20 @@ public class HealthCheckImplementation implements HealthCheck {
     }
 
     private void individualHealthCheck(Host host) {
-        String ip = host.getIpv4();
+        final int fiveSecondTimeout = 5000;
+        final String ip = host.getIpv4();
+
         try {
             InetAddress inetAddress = InetAddress.getByName(ip);
 
-            if (inetAddress.isReachable(5000)) {
+            if (inetAddress.isReachable(fiveSecondTimeout)) {
                 fleetManager.enableHost(host);
             } else {
                 fleetManager.disableHost(host);
             }
 
         } catch (Exception ex) {
-            System.out.println("Exception:" + ex.getMessage());
+            System.out.println(String.format("Exception: %s", ex.getMessage()));
             fleetManager.disableHost(host);
         }
     }
