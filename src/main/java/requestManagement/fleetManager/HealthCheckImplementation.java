@@ -2,6 +2,7 @@ package requestManagement.fleetManager;
 
 import requestManagement.fleetManager.hosts.Host;
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 public class HealthCheckImplementation implements HealthCheck {
     private FleetManager fleetManager;
@@ -28,9 +29,11 @@ public class HealthCheckImplementation implements HealthCheck {
                 fleetManager.disableHost(host);
             }
 
-        } catch (Exception ex) {
+        } catch (UnknownHostException ex) {
             System.out.println(String.format("Exception: %s", ex.getMessage()));
             fleetManager.disableHost(host);
+        } catch (Exception ex) {
+            System.out.println(String.format("Exception: %s", ex.getMessage()));
         }
     }
 }
