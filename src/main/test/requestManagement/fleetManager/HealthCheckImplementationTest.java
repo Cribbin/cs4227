@@ -6,6 +6,7 @@ import requestManagement.fleetManager.hosts.Host;
 
 import java.util.Collections;
 
+import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -70,11 +71,17 @@ class HealthCheckImplementationTest {
                 .build();
 
         when(fleetManager.getHosts()).thenReturn(Collections.singletonList(h));
-
+        doAnswer(i -> setState(h, "active")).when(fleetManager).enableHost(h);
+        doAnswer(i -> setState(h, "inactive")).when(fleetManager).disableHost(h);
         return h;
     }
 
     private void assertState(Host host, String state) {
         assert host.getState().toString().equals(state);
+    }
+
+    private Object setState(Host h, String state) {
+        h.setState(state);
+        return null;
     }
 }

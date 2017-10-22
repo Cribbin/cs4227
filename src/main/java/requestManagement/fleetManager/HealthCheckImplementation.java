@@ -20,11 +20,15 @@ public class HealthCheckImplementation implements HealthCheck {
         try {
             InetAddress inetAddress = InetAddress.getByName(ip);
 
-            host.setState(inetAddress.isReachable(5000) ? "active" : "inactive");
+            if (inetAddress.isReachable(5000)) {
+                fleetManager.enableHost(host);
+            } else {
+                fleetManager.disableHost(host);
+            }
 
         } catch (Exception ex) {
             System.out.println("Exception:" + ex.getMessage());
-            host.setState("inactive");
+            fleetManager.disableHost(host);
         }
     }
 }
