@@ -63,6 +63,15 @@ class HealthCheckImplementationTest {
         assertState(deadHost, INACTIVE_STATE);
     }
 
+    @Test
+    void shouldNotChangeHostStateIfFleetManagerThrowsException() {
+        Host localHost = getHost(INVALID_IP, ACTIVE_STATE);
+        assertState(localHost, ACTIVE_STATE);
+
+        when(fleetManager.getHosts()).thenThrow(new RuntimeException());
+        assertState(localHost, ACTIVE_STATE);
+    }
+
     private Host getHost(String ip, String state) {
         Host h = new Host.HostBuilder(ip)
                 .withDns(DNS)
