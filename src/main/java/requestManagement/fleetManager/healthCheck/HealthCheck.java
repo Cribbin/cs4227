@@ -1,4 +1,4 @@
-package requestManagement.fleetManager;
+package requestManagement.fleetManager.healthCheck;
 
 /**
  * Handles health checks to the fleet

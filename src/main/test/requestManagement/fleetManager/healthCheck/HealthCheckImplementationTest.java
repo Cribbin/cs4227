@@ -1,7 +1,8 @@
-package requestManagement.fleetManager;
+package requestManagement.fleetManager.healthCheck;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import requestManagement.fleetManager.FleetManager;
 import requestManagement.fleetManager.hosts.Host;
 
 import java.util.Collections;
