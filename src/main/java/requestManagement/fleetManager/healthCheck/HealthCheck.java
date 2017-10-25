@@ -7,6 +7,9 @@ package requestManagement.fleetManager.healthCheck;
  * and can then instruct the fleet manager to disable, enable, remove or add hosts depending on the results.
  */
 public interface HealthCheck {
-    /** Runs a health check for the fleet */
-    void runHealthCheck();
+    /**
+     * Execute the health check strategy and monitor fleet health
+     * @param healthCheckStrategy The strategy to check the fleet health
+     */
+    void execute(HealthCheckStrategy healthCheckStrategy);
 }

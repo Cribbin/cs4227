@@ -11,7 +11,7 @@ import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class HealthCheckImplementationTest {
+class HealthCheckPingingStrategyTest {
     private static final String LOOPBACK_IP = "127.0.0.1";
     private static final String INVALID_IP = "999.999.999";
     private static final String DNS = "testDns";
@@ -19,13 +19,13 @@ class HealthCheckImplementationTest {
     private static final String ACTIVE_STATE = "active";
     private static final String INACTIVE_STATE = "inactive";
 
-    private HealthCheckImplementation healthCheck;
+    private HealthCheckPingingStrategy healthCheck;
     private FleetManager fleetManager;
 
     @BeforeEach
     void setUp() {
         fleetManager = mock(FleetManager.class);
-        healthCheck = new HealthCheckImplementation(fleetManager);
+        healthCheck = new HealthCheckPingingStrategy();
     }
 
     @Test
@@ -33,7 +33,7 @@ class HealthCheckImplementationTest {
         Host localHost = getHost(LOOPBACK_IP, INACTIVE_STATE);
         assertState(localHost, INACTIVE_STATE);
 
-        healthCheck.runHealthCheck();
+        healthCheck.runHealthCheck(fleetManager);
         assertState(localHost, ACTIVE_STATE);
     }
 
@@ -42,7 +42,7 @@ class HealthCheckImplementationTest {
         Host localHost = getHost(LOOPBACK_IP, ACTIVE_STATE);
         assertState(localHost, ACTIVE_STATE);
 
-        healthCheck.runHealthCheck();
+        healthCheck.runHealthCheck(fleetManager);
         assertState(localHost, ACTIVE_STATE);
     }
 
@@ -51,7 +51,7 @@ class HealthCheckImplementationTest {
         Host deadHost = getHost(INVALID_IP, ACTIVE_STATE);
         assertState(deadHost, ACTIVE_STATE);
 
-        healthCheck.runHealthCheck();
+        healthCheck.runHealthCheck(fleetManager);
         assertState(deadHost, INACTIVE_STATE);
     }
 
@@ -60,7 +60,7 @@ class HealthCheckImplementationTest {
         Host deadHost = getHost(INVALID_IP, INACTIVE_STATE);
         assertState(deadHost, INACTIVE_STATE);
 
-        healthCheck.runHealthCheck();
+        healthCheck.runHealthCheck(fleetManager);
         assertState(deadHost, INACTIVE_STATE);
     }
 

@@ -2,39 +2,31 @@ package requestManagement.fleetManager.healthCheck;
 
 import requestManagement.fleetManager.FleetManager;
 import requestManagement.fleetManager.hosts.Host;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 
-public class HealthCheckImplementation implements HealthCheck {
+public class HealthCheckImplementation {
     private FleetManager fleetManager;
 
     public HealthCheckImplementation(FleetManager fleetManager) {
         this.fleetManager = fleetManager;
     }
 
-    @Override
-    public void runHealthCheck() {
-        fleetManager.getHosts().forEach(this::individualHealthCheck);
+    public void execute(HealthCheckStrategy strategy) {
+        strategy.runHealthCheck(this.fleetManager);
+
+        int numActiveHosts = 0;
+
+        for (Host host : fleetManager.getHosts()) {
+            if (host.getState().toString().equals("active")) {
+                numActiveHosts++;
+            }
+        }
+
+        if (numActiveHosts < 2) {
+            fleetManager.addHost(spinUpNewHost());
+        }
     }
 
-    private void individualHealthCheck(Host host) {
-        final int fiveSecondTimeout = 5000;
-        final String ip = host.getIpv4();
-
-        try {
-            InetAddress inetAddress = InetAddress.getByName(ip);
-
-            if (inetAddress.isReachable(fiveSecondTimeout)) {
-                fleetManager.enableHost(host);
-            } else {
-                fleetManager.disableHost(host);
-            }
-
-        } catch (UnknownHostException ex) {
-            System.out.println(String.format("Exception: %s", ex.getMessage()));
-            fleetManager.disableHost(host);
-        } catch (Exception ex) {
-            System.out.println(String.format("Exception: %s", ex.getMessage()));
-        }
+    private Host spinUpNewHost() {
+        return new Host.HostBuilder("ip").build();
     }
 }
