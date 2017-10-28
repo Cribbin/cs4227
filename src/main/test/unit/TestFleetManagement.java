@@ -15,6 +15,9 @@ class TestFleetManagement {
     private static final String IP_1 = "127.0.0.1";
     private static final String IP_2 = "127.0.0.2";
     private static final String IP_3 = "127.0.0.3";
+    private static final int MAX_CONNECTIONS_1 = 16;
+    private static final int MAX_CONNECTIONS_2 = 12;
+    private static final int MAX_CONNECTIONS_3 = 10;
     private static final String DNS = "SampleDNS";
     private static final int PORT_80 = 80;
 
@@ -33,18 +36,21 @@ class TestFleetManagement {
             .withDns(DNS)
             .withPort(PORT_80)
             .withState(ACTIVE_HOST)
+            .withMaxConnections(MAX_CONNECTIONS_1)
             .build();
 
         testHost2 = new Host.HostBuilder(IP_2)
             .withDns(DNS)
             .withPort(PORT_80)
             .withState(ACTIVE_HOST)
+            .withMaxConnections(MAX_CONNECTIONS_2)
             .build();
 
         testHost3 = new Host.HostBuilder(IP_3)
             .withDns(DNS)
             .withPort(PORT_80)
             .withState(INACTIVE_HOST)
+            .withMaxConnections(MAX_CONNECTIONS_3)
             .build();
     }
 

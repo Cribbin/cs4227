@@ -10,6 +10,7 @@ public class Host {
     private final boolean publicIp;
     private final String dns;
     private final int port;
+    private final int maxConnections;
     private HostState state;
 
     private Host(HostBuilder builder) {
@@ -18,6 +19,7 @@ public class Host {
         this.state = builder.state;
         this.dns = builder.dns;
         this.port = builder.port;
+        this.maxConnections = builder.maxConnections;
     }
 
     /** Returns a string value of the ipv4 of a host */
@@ -75,6 +77,7 @@ public class Host {
         private String dns;
         private HostState state;
         private int port;
+        private int maxConnections;
 
         public HostBuilder(String ipv4) {
             this.ipv4 = ipv4;
@@ -93,6 +96,11 @@ public class Host {
 
         public HostBuilder withState(String state) {
             this.state = new HostStateFactory().hostState(state);
+            return this;
+        }
+
+        public HostBuilder withMaxConnections(int maxConnections) {
+            this.maxConnections = maxConnections;
             return this;
         }
 

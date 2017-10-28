@@ -15,6 +15,7 @@ public class HostDAOFileSystem implements HostDAO {
     private static final int DNS = 1;
     private static final int PORT = 2;
     private static final int STATE = 3;
+    private static final int MAXCONNECTIONS = 5;
 
     private static String hostFile;
 
@@ -126,6 +127,7 @@ public class HostDAOFileSystem implements HostDAO {
             .withDns(hostData.get(DNS))
             .withPort(Integer.valueOf(hostData.get(PORT)))
             .withState(hostData.get(STATE))
+            .withMaxConnections(Integer.valueOf(hostData.get(MAXCONNECTIONS)))
             .build();
     }
 
