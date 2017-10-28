@@ -11,6 +11,7 @@ public class Host {
     private final String dns;
     private final int port;
     private final int maxConnections;
+    private int activeConnections;
     private HostState state;
 
     private Host(HostBuilder builder) {
@@ -37,6 +38,13 @@ public class Host {
         return port;
     }
 
+    /** Returns a int value of max connections for the host */
+    public int getMaxConnections () { return maxConnections; }
+
+    public int getActiveConnections() {
+        return activeConnections;
+    }
+
     /** Returns a string value of the state of a host */
     public HostState getState() {
         return state;
@@ -56,8 +64,12 @@ public class Host {
         this.state = new HostStateFactory().hostState(state);
     }
 
+
     public boolean isActive() {
         return this.getState().toString().equals("active");
+    }
+    public void setActiveConnections(int activeConnections) {
+        this.activeConnections = activeConnections;
     }
 
     /** Overrides the toString method for this object */

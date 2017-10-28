@@ -16,6 +16,8 @@ public class HostStateFactory {
             return new ActiveHost();
         } else if (state.equals("inactive")) {
             return new InactiveHost();
+        } else if (state.equals("atMaxConnections")) {
+            return new AtMaxConnections();
         }
         throw new IllegalArgumentException(String.format("%s is not a valid state", state));
     }
