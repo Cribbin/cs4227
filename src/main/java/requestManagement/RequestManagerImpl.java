@@ -1,6 +1,6 @@
 package requestManagement;
 
-import org.apache.http.HttpRequest;
+import requests.HttpRequest;
 import org.apache.http.HttpResponse;
 import requestManagement.fleetManager.FleetManager;
 import requestManagement.loadBalancer.LoadBalancer;
@@ -34,6 +34,7 @@ public class RequestManagerImpl implements RequestManager {
 
         Context<HttpResponse> responseContext = new Context<>();
         responseContext.setEvent(response);
+        
         /* Dispatch outgoing response to all subscribed services */
         dispatcher.dispatchOutgoingResponse(responseContext);
 
