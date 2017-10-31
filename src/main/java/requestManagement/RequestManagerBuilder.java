@@ -1,6 +1,7 @@
 package requestManagement;
 
 import requestManagement.fleetManager.FleetManager;
+import requestManagement.fleetManager.healthCheck.HealthCheck;
 import requestManagement.loadBalancer.LoadBalancer;
 
 public class RequestManagerBuilder {
@@ -9,6 +10,7 @@ public class RequestManagerBuilder {
 
     private LoadBalancer loadBalancer = null;
     private FleetManager fleetManager = null;
+    private HealthCheck healthCheck;
 
     protected RequestManagerBuilder() {
 
@@ -30,6 +32,11 @@ public class RequestManagerBuilder {
     public RequestManagerBuilder withFleetManager(FleetManager fleetManager) {
         this.setFleetManager(fleetManager);
 
+        return this;
+    }
+
+    public RequestManagerBuilder withHealthChecker(HealthCheck healthCheck) {
+        this.healthCheck = healthCheck;
         return this;
     }
 
@@ -61,4 +68,7 @@ public class RequestManagerBuilder {
         return fleetManager;
     }
 
+    HealthCheck getHealthCheck() {
+        return healthCheck;
+    }
 }

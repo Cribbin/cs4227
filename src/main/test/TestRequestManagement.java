@@ -4,6 +4,8 @@ import requestManagement.Dispatcher;
 import requestManagement.RequestManager;
 import requestManagement.Service;
 import requestManagement.fleetManager.FleetManager;
+import requestManagement.fleetManager.healthCheck.HealthCheck;
+import requestManagement.fleetManager.healthCheck.HealthCheckImplementation;
 import requestManagement.loadBalancer.LoadBalancer;
 
 import java.util.ArrayList;
@@ -61,12 +63,14 @@ class TestRequestManagement {
         Dispatcher dispatcher = new Dispatcher(services);
         LoadBalancer loadBalancer = null;
         FleetManager fleetManager = FleetManager.getInstance();
+        HealthCheck healthCheck = new HealthCheckImplementation(fleetManager);
 
         /* Test that the request manager builds successfully with valid member variables */
         RequestManager requestManager = RequestManager.getBuilder()
                 .withFleetManager(fleetManager)
                 .withLoadBalancer(loadBalancer)
                 .withDispatcher(dispatcher)
+                .withHealthChecker(healthCheck)
                 .build();
 
         /* TODO: Should eventually raise argument exceptions when invalid dependency classes are passed and test such cases */
