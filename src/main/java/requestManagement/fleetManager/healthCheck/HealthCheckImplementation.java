@@ -25,6 +25,7 @@ public class HealthCheckImplementation implements HealthCheck {
             try {
                 Thread.sleep(refreshInterval);
             } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
                 e.printStackTrace();
                 break;
             }
