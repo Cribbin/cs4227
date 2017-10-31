@@ -54,6 +54,10 @@ public class Host {
         this.state = new HostStateFactory().hostState(state);
     }
 
+    public boolean isActive() {
+        return this.getState().toString().equals("active");
+    }
+
     /** Overrides the toString method for this object */
     @Override
     public String toString() {

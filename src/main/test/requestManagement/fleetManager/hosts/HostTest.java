@@ -29,6 +29,7 @@ class HostTest {
         assert host.getDns().equals(DNS_NAME);
         assert host.getPort() == PORT_80;
         assert host.getState().toString().equals(ACTIVE_STATE);
+        assert host.isActive();
         assert host.getIpv4().equals(VALID_PRIVATE_IP);
         assert !host.isPublicIp();
     }
@@ -37,6 +38,7 @@ class HostTest {
     void shouldUpdateHostState() {
         host.setState(INACTIVE_STATE);
         assert host.getState().toString().equals(INACTIVE_STATE);
+        assert !host.isActive();
     }
 
     @Test
