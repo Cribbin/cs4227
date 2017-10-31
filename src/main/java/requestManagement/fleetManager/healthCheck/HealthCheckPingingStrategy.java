@@ -1,22 +1,18 @@
-package requestManagement.fleetManager;
+package requestManagement.fleetManager.healthCheck;
 
+import requestManagement.fleetManager.FleetManager;
 import requestManagement.fleetManager.hosts.Host;
+
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-public class HealthCheckImplementation implements HealthCheck {
-    private FleetManager fleetManager;
-
-    public HealthCheckImplementation(FleetManager fleetManager) {
-        this.fleetManager = fleetManager;
-    }
-
+public class HealthCheckPingingStrategy implements HealthCheckStrategy {
     @Override
-    public void runHealthCheck() {
-        fleetManager.getHosts().forEach(this::individualHealthCheck);
+    public void runHealthCheck(FleetManager fleetManager) {
+        fleetManager.getHosts().forEach(h -> individualHealthCheck(fleetManager, h));
     }
 
-    private void individualHealthCheck(Host host) {
+    private void individualHealthCheck(FleetManager fleetManager, Host host) {
         final int fiveSecondTimeout = 5000;
         final String ip = host.getIpv4();
 

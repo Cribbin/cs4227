@@ -46,6 +46,27 @@ public class FleetManager {
         return hostDataAccess.getHosts();
     }
 
+    /** Returns a number of the active hosts */
+    public int getNumActiveHosts() {
+        int numActiveHosts = 0;
+        for (Host host : this.getHosts()) {
+            if (host.isActive()) {
+                numActiveHosts++;
+            }
+        }
+
+        return numActiveHosts;
+    }
+
+    /** Removes all inactive hosts */
+    public void flushInactiveHosts() {
+        for (Host host : this.getHosts()) {
+            if (!host.isActive()) {
+                fleetManagerInstance.removeHost(host);
+            }
+        }
+    }
+
     /** Returns the instance of the Singleton class and initialises it if not already initialised */
     public static FleetManager getInstance() {
         if (fleetManagerInstance == null) {
