@@ -13,5 +13,4 @@ public class LbClientSideRandom extends LbStrategy {
     public Host getNextHost() {
         return fleetManager.getHosts().get(0);
     }
-
 }

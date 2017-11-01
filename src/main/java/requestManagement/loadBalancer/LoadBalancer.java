@@ -8,6 +8,7 @@ import java.io.IOException;
 public interface LoadBalancer {
 
     HttpResponse executeRequest(HttpRequest request) throws IOException;
+
     static LoadBalancerBuilder getBuilder() {
         return new LoadBalancerBuilder();
     }

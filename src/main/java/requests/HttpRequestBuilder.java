@@ -7,15 +7,15 @@ public class HttpRequestBuilder {
     HttpRequestBuilder() { }
 
     private String method;
-    private JSONObject json;
+    private JSONObject body;
     private String uri;
 
     public void setMethod(String method) {
         this.method = method;
     }
 
-    public void setJson(JSONObject json) {
-        this.json = json;
+    public void setBody(JSONObject json) {
+        this.body = json;
     }
 
     public void setUri(String uri) {
@@ -26,8 +26,8 @@ public class HttpRequestBuilder {
         return this.method;
     }
 
-    public JSONObject getJson() {
-        return this.json;
+    public JSONObject getBody() {
+        return this.body;
     }
 
     public String getUri() {
@@ -40,7 +40,7 @@ public class HttpRequestBuilder {
     }
 
     public HttpRequestBuilder withJson(JSONObject json) {
-        setJson(json);
+        setBody(json);
 
         return this;
     }

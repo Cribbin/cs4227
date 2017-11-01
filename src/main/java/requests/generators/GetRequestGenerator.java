@@ -23,9 +23,8 @@ public class GetRequestGenerator implements RequestGenerator {
             if(originalUri.getQuery() != null) uriBuilder.append("?" + originalUri.getQuery());
 
             endUri = uriBuilder.toString();
-
-        } catch(URISyntaxException ex) {
-            // TODO: Log this
+        } catch (URISyntaxException ex) {
+            ex.printStackTrace();
         }
 
         return new HttpGet(endUri);
