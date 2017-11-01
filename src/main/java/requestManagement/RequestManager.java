@@ -5,7 +5,7 @@ import org.apache.http.HttpResponse;
 import requests.HttpRequest;
 
 /**
- * Handles a SimpleHttpRequest.
+ * Handles a HttpRequest.
  *
  * An implementation of this class will handle LoadBalancing of requests across a preconfigured fleet. It will also
  * handle Fleet Management from an end user perspective.
