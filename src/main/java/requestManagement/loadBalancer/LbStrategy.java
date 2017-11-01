@@ -1,11 +1,14 @@
 package requestManagement.loadBalancer;
 
 import requestManagement.fleetManager.FleetManager;
-import requestManagement.fleetManager.hosts.ActiveHost;
+import requestManagement.fleetManager.hosts.Host;
 
 public abstract class LbStrategy {
+    protected FleetManager fleetManager;
 
-    public LbStrategy(FleetManager fleetManager) {}
+    public LbStrategy(FleetManager fleetManager) {
+        this.fleetManager = fleetManager;
+    }
 
-    public abstract ActiveHost getNextHost();
+    public abstract Host getNextHost();
 }

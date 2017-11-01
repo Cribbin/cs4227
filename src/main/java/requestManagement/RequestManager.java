@@ -1,7 +1,7 @@
 package requestManagement;
 
-import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
+import requests.HttpRequest;
 
 /**
  * Handles a HttpRequest.
