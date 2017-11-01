@@ -3,6 +3,8 @@ package requestManagement;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import requestManagement.fleetManager.FleetManager;
+import requestManagement.fleetManager.healthCheck.HealthCheck;
+import requestManagement.fleetManager.healthCheck.HealthCheckPingingStrategy;
 import requestManagement.loadBalancer.LoadBalancer;
 
 public class RequestManagerImpl implements RequestManager {
@@ -10,11 +12,13 @@ public class RequestManagerImpl implements RequestManager {
     private Dispatcher dispatcher = null;
     private LoadBalancer loadBalancer = null;
     private FleetManager fleetManager = null;
+    private HealthCheck healthCheck = null;
 
     RequestManagerImpl(RequestManagerBuilder builder) {
         dispatcher = builder.getDispatcher();
         loadBalancer = builder.getLoadBalancer();
         fleetManager = builder.getFleetManager();
+        healthCheck = builder.getHealthCheck();
     }
 
     @Override
@@ -43,5 +47,7 @@ public class RequestManagerImpl implements RequestManager {
     @Override
     public void initialiseFleet() {
         /* Should initialise the fleet here eventually. */
+        long refreshInterval = 5000L;
+        healthCheck.execute(new HealthCheckPingingStrategy(), refreshInterval);
     }
 }
