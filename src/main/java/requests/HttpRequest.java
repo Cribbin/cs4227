@@ -8,7 +8,7 @@ import org.json.JSONObject;
 public class HttpRequest {
 
     private String method;
-    private JSONObject json;
+    private JSONObject body;
     private String uri;
 
     /**
@@ -19,7 +19,7 @@ public class HttpRequest {
      */
     protected HttpRequest(HttpRequestBuilder builder) {
         this.method = builder.getMethod();
-        this.json = builder.getJson();
+        this.body = builder.getBody();
         this.uri = builder.getUri();
     }
 
@@ -27,8 +27,8 @@ public class HttpRequest {
         return method;
     }
 
-    public JSONObject getParams() {
-        return json;
+    public JSONObject getBody() {
+        return body;
     }
 
     public String getUri() {

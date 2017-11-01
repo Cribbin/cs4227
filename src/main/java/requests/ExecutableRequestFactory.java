@@ -10,7 +10,6 @@ import requests.generators.RequestGenerator;
 import java.util.HashMap;
 import java.util.Map;
 
-
 /**
  * Factory class that builds Executable HTTP Requests from the Facade HttpRequest object that we have created.
  */
@@ -23,12 +22,11 @@ public class ExecutableRequestFactory {
     }
 
     public HttpRequestBase getExecutableRequest(HttpRequest request, Host host) {
-
         return requestGenerators.get(request.getMethod()).generateRequest(request, host);
     }
 
-    private HashMap<String, RequestGenerator> initialiseGenerators() {
-        HashMap<String, RequestGenerator> generators = new HashMap<>();
+    private Map<String, RequestGenerator> initialiseGenerators() {
+        Map<String, RequestGenerator> generators = new HashMap<>();
 
         generators.put("GET", new GetRequestGenerator());
         generators.put("POST", new PostRequestGenerator());

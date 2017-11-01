@@ -1,6 +1,5 @@
 package requestManagement;
 
-
 import org.apache.http.HttpResponse;
 import requests.HttpRequest;
 

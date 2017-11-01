@@ -38,7 +38,6 @@ public class LoadBalancerImpl implements LoadBalancer {
             facadeResponse = responseFactory.generateResponse(response);
         } finally {
             httpClient.close();
-
             // TODO: Decrement active connections for host.
         }
         return facadeResponse;

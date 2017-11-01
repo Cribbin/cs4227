@@ -63,7 +63,7 @@ class HttpRequests {
 
         try {
             response = loadBalancer.executeRequest(request);
-        } catch( IOException ex) {
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
 

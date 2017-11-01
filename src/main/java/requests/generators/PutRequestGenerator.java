@@ -10,5 +10,4 @@ public class PutRequestGenerator implements RequestGenerator {
     public HttpRequestBase generateRequest(HttpRequest request, Host host) {
         return null;
     }
-
 }
