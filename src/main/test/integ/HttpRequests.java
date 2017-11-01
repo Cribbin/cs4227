@@ -36,7 +36,6 @@ class HttpRequests {
 
     }
 
-
     @Test
     void shouldReturn200Success() throws IOException {
         HttpResponse response = null;

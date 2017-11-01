@@ -36,6 +36,7 @@ public class HttpRequestBuilder {
 
     public HttpRequestBuilder withMethod(String method) {
         setMethod(method);
+
         return this;
     }
 
