@@ -1,7 +1,7 @@
 package requestManagement.loadBalancer;
 
 import requestManagement.fleetManager.FleetManager;
-import requestManagement.fleetManager.hosts.ActiveHost;
+import requestManagement.fleetManager.hosts.Host;
 
 public class LbRoundRobin extends LbStrategy {
 
@@ -10,7 +10,7 @@ public class LbRoundRobin extends LbStrategy {
     }
 
     @Override
-    public ActiveHost getNextHost() {
-        return new ActiveHost();
+    public Host getNextHost() {
+        return null;//new Host();
     }
 }

@@ -1,7 +1,7 @@
 package requestManagement.loadBalancer;
 
 import requestManagement.fleetManager.FleetManager;
-import requestManagement.fleetManager.hosts.ActiveHost;
+import requestManagement.fleetManager.hosts.Host;
 
 public class LbClientSideRandom extends LbStrategy {
 
@@ -10,8 +10,8 @@ public class LbClientSideRandom extends LbStrategy {
     }
 
     @Override
-    public ActiveHost getNextHost() {
-        return new ActiveHost();
+    public Host getNextHost() {
+        return fleetManager.getHosts().get(0);
     }
 
 }
