@@ -1,11 +1,13 @@
 package requestManagement;
 
 import requests.HttpRequest;
-import org.apache.http.HttpResponse;
+import responses.HttpResponse;
 import requestManagement.fleetManager.FleetManager;
 import requestManagement.fleetManager.healthCheck.HealthCheck;
 import requestManagement.fleetManager.healthCheck.HealthCheckPingingStrategy;
 import requestManagement.loadBalancer.LoadBalancer;
+
+import java.io.IOException;
 
 public class RequestManagerImpl implements RequestManager {
 
@@ -34,7 +36,11 @@ public class RequestManagerImpl implements RequestManager {
 
         HttpResponse response = null;
 
-        /* response = loadBalancer.handleRequest(request); */
+        try {
+            response = loadBalancer.executeRequest(request);
+        } catch(IOException ex) {
+            ex.printStackTrace();
+        }
 
         Context<HttpResponse> responseContext = new Context<>();
         responseContext.setEvent(response);
