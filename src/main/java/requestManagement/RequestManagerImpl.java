@@ -31,7 +31,7 @@ public class RequestManagerImpl implements RequestManager {
         requestContext.setEvent(request);
         dispatcher.dispatchIncomingRequest(requestContext);
 
-        if(requestContext.getResponse() != null) {
+        if (requestContext.getResponse() != null) {
             return requestContext.getResponse();
         }
 
@@ -46,7 +46,7 @@ public class RequestManagerImpl implements RequestManager {
 
         dispatcher.dispatchOutgoingResponse(responseContext);
 
-        if(responseContext.getResponse() != null) {
+        if (responseContext.getResponse() != null) {
             return responseContext.getResponse();
         }
 
