@@ -25,16 +25,15 @@ public class RequestManagerImpl implements RequestManager {
 
     @Override
     public HttpResponse handleRequest(HttpRequest request) {
-
-        /* Dispatch incoming request event to all subscribed services. */
+        HttpResponse response = null;
 
         Context<HttpRequest> requestContext = new Context<>();
         requestContext.setEvent(request);
         dispatcher.dispatchIncomingRequest(requestContext);
 
-        /* Actually forward the request. This is where the Load Balancer would be called.*/
-
-        HttpResponse response = null;
+        if(requestContext.getResponse() != null) {
+            return requestContext.getResponse();
+        }
 
         try {
             response = loadBalancer.executeRequest(request);
@@ -44,9 +43,12 @@ public class RequestManagerImpl implements RequestManager {
 
         Context<HttpResponse> responseContext = new Context<>();
         responseContext.setEvent(response);
-        
-        /* Dispatch outgoing response to all subscribed services */
+
         dispatcher.dispatchOutgoingResponse(responseContext);
+
+        if(responseContext.getResponse() != null) {
+            return responseContext.getResponse();
+        }
 
         return response;
     }
