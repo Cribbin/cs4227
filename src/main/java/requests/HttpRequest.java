@@ -23,6 +23,8 @@ public class HttpRequest {
         this.uri = builder.getUri();
     }
 
+    public HttpRequest() {    }
+
     public String getMethod() {
         return method;
     }

@@ -1,6 +1,7 @@
 .idea
 *.iml
 /src/target/*
+lib/*
 target/*
 Hosts.txt
 *.swp
