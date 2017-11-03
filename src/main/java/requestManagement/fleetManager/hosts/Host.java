@@ -39,7 +39,7 @@ public class Host {
     }
 
     /** Returns a int value of max connections for the host */
-    public int getMaxConnections () {
+    public int getMaxConnections() {
         return maxConnections;
     }
 
