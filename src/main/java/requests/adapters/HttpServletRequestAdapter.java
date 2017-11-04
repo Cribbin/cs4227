@@ -27,10 +27,12 @@ public class HttpServletRequestAdapter extends HttpRequest {
         StringBuffer requestUrl = request.getRequestURL();
         String requestUri = request.getRequestURI();
 
-        if(requestUrl != null && requestUri == null){
-            finalUri += requestUrl.toString();
-        } else if(requestUrl != null && requestUri != null){
-            finalUri += requestUrl.append('?').append(requestUri).toString();
+        if(requestUrl != null) {
+            finalUri = requestUrl.toString();
+        }
+        if(requestUri != null) {
+            finalUri = finalUri.substring(0,finalUri.length()-1);
+            finalUri += requestUri;
         }
         return finalUri;
     }
