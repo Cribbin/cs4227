@@ -30,7 +30,7 @@ public class HttpServletRequestAdapter extends HttpRequest {
         if(requestUrl != null) {
             finalUri = requestUrl.toString();
         }
-        if(requestUri != null) {
+        if(requestUri != null && finalUri.length() != 0) {
             finalUri = finalUri.substring(0,finalUri.length()-1);
             finalUri += requestUri;
         }
