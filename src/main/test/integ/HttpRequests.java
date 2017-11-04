@@ -81,7 +81,6 @@ class HttpRequests {
         HttpResponse response = null;
 
         HttpRequest request = new HttpServletRequestAdapter(httpServletRequest);
-
         when(request.getMethod()).thenReturn("GET");
         when(request.getUri()).thenReturn("https://my-random-example-middleware-host.com/get");
 
