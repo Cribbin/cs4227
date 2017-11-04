@@ -22,6 +22,16 @@ public class HttpServletRequestAdapter extends HttpRequest {
 
     @Override
     public String getUri() {
-        return request.getRequestURI();
+        String finalUri = "";
+
+        StringBuffer requestUrl = request.getRequestURL();
+        String requestUri = request.getRequestURI();
+
+        if(requestUrl != null && requestUri == null){
+            finalUri += requestUrl.toString();
+        } else if(requestUrl != null && requestUri != null){
+            finalUri += requestUrl.append('?').append(requestUri).toString();
+        }
+        return finalUri;
     }
 }
