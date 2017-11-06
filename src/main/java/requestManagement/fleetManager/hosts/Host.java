@@ -38,11 +38,12 @@ public class Host {
         return port;
     }
 
-    /** Returns a int value of max connections for the host */
+    /** Returns a int value of max connections for a host */
     public int getMaxConnections() {
         return maxConnections;
     }
 
+    /** Returns an int value of active connection for a host */
     public int getActiveConnections() {
         return activeConnections;
     }
