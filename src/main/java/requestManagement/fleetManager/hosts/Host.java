@@ -7,7 +7,6 @@ package requestManagement.fleetManager.hosts;
  */
 public class Host {
     private final String ipv4;
-    private final boolean publicIp;
     private final String dns;
     private final int port;
     private final int maxConnections;
@@ -16,7 +15,6 @@ public class Host {
 
     private Host(HostBuilder builder) {
         this.ipv4 = builder.ipv4;
-        this.publicIp = builder.publicIp;
         this.state = builder.state;
         this.dns = builder.dns;
         this.port = builder.port;
@@ -53,16 +51,6 @@ public class Host {
         return state;
     }
 
-    /** Returns a string value of the subnet type of a host */
-    public String getSubnet() {
-        return publicIp ? "public" : "private";
-    }
-
-    /** Returns a boolean value to determine whether the host has a public ip */
-    public boolean isPublicIp() {
-        return publicIp;
-    }
-
     public void setState(String state) {
         this.state = new HostStateFactory().hostState(state);
     }
@@ -88,7 +76,6 @@ public class Host {
 
     public static class HostBuilder {
         private final String ipv4;
-        private final boolean publicIp;
         private String dns;
         private HostState state;
         private int port;
@@ -96,7 +83,6 @@ public class Host {
 
         public HostBuilder(String ipv4) {
             this.ipv4 = ipv4;
-            this.publicIp = isPublicIp(ipv4);
         }
 
         public HostBuilder withDns(String dns) {
@@ -123,9 +109,5 @@ public class Host {
             return new Host(this);
         }
 
-        // TODO Add regex to check for private/public. Defaulting to private for now
-        private boolean isPublicIp(String ipv4) {
-            return false;
-        }
     }
 }

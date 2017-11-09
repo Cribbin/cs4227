@@ -34,7 +34,6 @@ class HostTest {
         assert host.isActive();
         assert host.getIpv4().equals(VALID_PRIVATE_IP);
         assert host.getMaxConnections() == MAX_CONNECTIONS;
-        assert !host.isPublicIp();
     }
 
     @Test

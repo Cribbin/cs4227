@@ -18,7 +18,6 @@ class HostDAOFileSystemTest {
     private static final int MAX_CONNECTIONS = 16;
     private static final String ACTIVE_STATE = "active";
     private static final String INACTIVE_STATE = "inactive";
-    private static final String PRIVATE_SUBNET = "private";
 
     private final ClassLoader classLoader = getClass().getClassLoader();
 
@@ -88,7 +87,6 @@ class HostDAOFileSystemTest {
         assert host.getPort() == PORT_80;
         assert host.getMaxConnections() == maxConnections;
         assert host.getState().toString().equals(state);
-        assert host.getSubnet().equals(PRIVATE_SUBNET);
     }
 
 }
