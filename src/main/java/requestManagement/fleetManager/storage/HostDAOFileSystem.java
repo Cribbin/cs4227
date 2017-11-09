@@ -15,7 +15,7 @@ public class HostDAOFileSystem implements HostDAO {
     private static final int DNS = 1;
     private static final int PORT = 2;
     private static final int STATE = 3;
-    private static final int MAXCONNECTIONS = 5;
+    private static final int MAXCONNECTIONS = 4;
 
     private static String hostFile;
 

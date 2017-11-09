@@ -31,6 +31,8 @@ class HttpRequests {
         Host testHost = new Host.HostBuilder("192.168.1.1")
                 .withDns("httpbin.org")
                 .withState("active")
+                .withMaxConnections(3)
+                .withPort(80)
                 .build();
 
         fleetManager.addHost(testHost);

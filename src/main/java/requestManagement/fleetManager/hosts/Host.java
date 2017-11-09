@@ -82,7 +82,7 @@ public class Host {
             .append(",").append(this.getDns())
             .append(",").append(this.getPort())
             .append(",").append(this.getState())
-            .append(",").append(this.getSubnet())
+            .append(",").append(this.getMaxConnections())
             .append("\n").toString();
     }
 
