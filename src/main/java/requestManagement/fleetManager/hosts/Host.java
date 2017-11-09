@@ -55,10 +55,10 @@ public class Host {
         this.state = new HostStateFactory().hostState(state);
     }
 
-
     public boolean isActive() {
         return this.getState().toString().equals("active");
     }
+    
     public void setActiveConnections(int activeConnections) {
         this.activeConnections = activeConnections;
     }

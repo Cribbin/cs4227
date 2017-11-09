@@ -15,7 +15,8 @@ class HostDAOFileSystemTest {
     private static final String DNS_NAME_1 = "testDns1";
     private static final String DNS_NAME_2 = "testDns2";
     private static final int PORT_80 = 80;
-    private static final int MAX_CONNECTIONS = 16;
+    private static final int MAX_CONNECTIONS_1 = 16;
+    private static final int MAX_CONNECTIONS_2 = 18;
     private static final String ACTIVE_STATE = "active";
     private static final String INACTIVE_STATE = "inactive";
 
@@ -29,8 +30,8 @@ class HostDAOFileSystemTest {
         System.out.println(file);
         dao = new HostDAOFileSystem(file);
 
-        Host host1 = getHost(VALID_PRIVATE_IP_1, DNS_NAME_1, ACTIVE_STATE, 10);
-        Host host2 = getHost(VALID_PRIVATE_IP_2, DNS_NAME_2, INACTIVE_STATE, 12);
+        Host host1 = getHost(VALID_PRIVATE_IP_1, DNS_NAME_1, ACTIVE_STATE, MAX_CONNECTIONS_1);
+        Host host2 = getHost(VALID_PRIVATE_IP_2, DNS_NAME_2, INACTIVE_STATE, MAX_CONNECTIONS_2);
 
         try {
             FileWriter fw = new FileWriter(file, false);
@@ -48,8 +49,8 @@ class HostDAOFileSystemTest {
 
        assert hosts.size() == 2;
 
-       assertHost(hosts.get(0), VALID_PRIVATE_IP_1, DNS_NAME_1, ACTIVE_STATE, 10);
-       assertHost(hosts.get(1), VALID_PRIVATE_IP_2, DNS_NAME_2, INACTIVE_STATE, 12);
+       assertHost(hosts.get(0), VALID_PRIVATE_IP_1, DNS_NAME_1, ACTIVE_STATE, MAX_CONNECTIONS_1);
+       assertHost(hosts.get(1), VALID_PRIVATE_IP_2, DNS_NAME_2, INACTIVE_STATE, MAX_CONNECTIONS_2);
     }
 
     @Test
@@ -62,7 +63,7 @@ class HostDAOFileSystemTest {
                 .withDns(DNS_NAME_1)
                 .withState(ACTIVE_STATE)
                 .withPort(PORT_80)
-                .withMaxConnections(MAX_CONNECTIONS)
+                .withMaxConnections(MAX_CONNECTIONS_1)
                 .build();
 
         dao.addHost(host);
