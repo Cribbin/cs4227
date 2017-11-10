@@ -17,7 +17,7 @@ public class GetRequestGenerator implements RequestGenerator {
             URI originalUri = new URI(request.getUri());
 
             StringBuilder uriBuilder = new StringBuilder();
-            uriBuilder.append("https://");
+            uriBuilder.append("http://");
             uriBuilder.append(host.getDns());
             if(originalUri.getPath() != null) uriBuilder.append(originalUri.getPath());
             if(originalUri.getQuery() != null) uriBuilder.append("?" + originalUri.getQuery());
